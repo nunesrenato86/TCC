@@ -1,0 +1,217 @@
+﻿<Window x:Class="Fluxos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:k="http://schemas.microsoft.com/kinect/2013"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:my="clr-namespace:Fluxos.Auxiliar"
+        xmlns:local="clr-namespace:Fluxos"
+        Title="KSlide" Closed="Window_Closed" Height="800" Width="1500" WindowState="Maximized">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.OkInformacao}" Executed="OnOkInformacao" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.Help}" Executed="OnHelp" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.OkInputBox}" Executed="OnOkInputBox" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.HideHelp}" Executed="OnHideHelp" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.Email}" Executed="OnEmail" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.Canhoto}" Executed="OnCanhoto" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.Abrir}" Executed="OnAbrir" />
+  
+        <CommandBinding Command="{x:Static local:MainWindow.EntrarModoDesenho}" Executed="OnEntrarModoDesenho" />
+    
+        <CommandBinding Command="{x:Static local:MainWindow.Canhoto}" Executed="OnCanhoto" />
+   
+        <CommandBinding Command="{x:Static local:MainWindow.SairApp}" Executed="OnSairApp" />
+   
+        <CommandBinding Command="{x:Static local:MainWindow.AumentarLinha}" Executed="OnAumentarLinha" />
+    
+        <CommandBinding Command="{x:Static local:MainWindow.DiminuirLinha}" Executed="OnDiminuirLinha" />
+    
+        <CommandBinding Command="{x:Static local:MainWindow.Vermelho}" Executed="OnVermelho" />
+   
+        <CommandBinding Command="{x:Static local:MainWindow.Azul}" Executed="OnAzul" />
+    
+        <CommandBinding Command="{x:Static local:MainWindow.Verde}" Executed="OnVerde" />
+   
+        <CommandBinding Command="{x:Static local:MainWindow.ApagarDesenho}" Executed="OnApagarDesenho" />
+   
+        <CommandBinding Command="{x:Static local:MainWindow.ApagarArquivo}" Executed="OnApagarArquivo" />
+    
+        <CommandBinding Command="{x:Static local:MainWindow.EntrarModoApresentacao}" Executed="OnEntrarModoApresentacao" />
+
+        <CommandBinding Command="{x:Static local:MainWindow.SlideClick}" Executed="OnSlideClick" />
+    </Window.CommandBindings>
+
+    <!--k:KinectRegion Name="kinectRegion" Grid.Row="2" Grid.ColumnSpan="2" -->
+    <Grid Name="GradePrincipal">
+        <Grid.RowDefinitions>
+            <my:RowDefinitionExtended Height="50"/>
+            <my:RowDefinitionExtended Height="*"/>
+            <my:RowDefinitionExtended Height="180"/>
+            <my:RowDefinitionExtended Height="180"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <my:ColumnDefinitionExtended Width="250"/>
+            <my:ColumnDefinitionExtended Width="*"/>
+            <my:ColumnDefinitionExtended Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Canvas Name="canvasKinect" Grid.Row ="1" Grid.Column="1" />
+        <my:CanvasInteracao x:Name="canvasDesenho" Grid.Column="1" Grid.Row="1"  />
+
+        <my:MenuVertical x:Name="menuVertical" HorizontalAlignment="Left" Visibility="Visible" 
+                         Grid.Column="1" Grid.Row="1">
+        </my:MenuVertical>
+
+        <my:MenuSlides x:Name="menuSlides" HorizontalAlignment="Left" Visibility="Visible" 
+                         Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom">
+        </my:MenuSlides>
+
+        <k:KinectSensorChooserUI Name="seletorSensorUI" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <k:KinectUserViewer Name="verUsuario"
+                            Grid.Column="1"
+                            k:KinectRegion.KinectRegion="{Binding ElementName=kinectRegion}" 
+                            Height="50" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top" />
+
+
+        <DockPanel Grid.RowSpan="2">
+            <k:KinectScrollViewer Name="scrollViewer"
+                              Grid.Row="1"
+                              Grid.Column="0">
+                <WrapPanel VerticalAlignment="Center" 
+                           x:Name="wrapPanel" 
+                           Orientation="Vertical" 
+                           k:KinectTileButton.Click="KinectTileButtonClick">
+                    <!-- items for design layout.  They will be replaced at runtime. -->
+                    <k:KinectTileButton Label="1"/>
+                    <k:KinectTileButton Label="2"/>
+                    <k:KinectTileButton Label="3"/>
+                    <k:KinectTileButton Label="4"/>
+                    <k:KinectTileButton Label="5"/>
+                </WrapPanel>
+
+            </k:KinectScrollViewer>
+        </DockPanel>
+        <Slider Name="slider"
+                Width="20"
+                Orientation="Vertical"
+                Minimum="-27"
+                Maximum="27"
+                SmallChange="1"
+                Value="0"
+                Height="{Binding ElementName=imagemCamera, Path=ActualHeight}"
+                Grid.Column="2"
+                Grid.Row="1"
+                Thumb.DragCompleted="slider_DragCompleted"
+                />
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <k:KinectCircleButton Name="btnFechar"  DockPanel.Dock="Right"                                                         
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" 
+                                          Click="btnFecharClick">
+                <Image x:Name="imgBtnFechar" Height="60" Width="60"  Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Sair.png" RenderTransformOrigin="0.289,0.542"/>
+            </k:KinectCircleButton>
+
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="862"  >
+
+                <k:KinectCircleButton Name="btnAbrir"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" 
+                                          Click="btnAbrir_Click">
+                    <Image x:Name="imgBtnAbrir" Height="60" Width="60"  Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Abrir.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+
+                <k:KinectCircleButton Name="btnDesenhar"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" 
+                                          Click="btnDesenharClick">
+                    <Image x:Name="imgBtnDesenhar" Height="60" Width="60"  Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Desenho.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+                <TextBox TextWrapping="Wrap" x:Name="tblGestures" Text="TextBox" FontSize="25"  Width="200"/>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <k:KinectCircleButton Name="btnApresentacao"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue"
+                                          DockPanel.Dock="Right" Click="btnApresentacao_Click">
+                <Image x:Name="imgApresentacao" Height="60" Width="60"  
+                               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Apresentacao.png" RenderTransformOrigin="0.289,0.542"/>
+            </k:KinectCircleButton>
+
+            <k:KinectCircleButton Name="btnExcluir"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue"
+                                          DockPanel.Dock="Right" Click="btnExcluir_Click" >
+                <Image x:Name="imgSalvarDesenho" Height="60" Width="60"  
+                               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Excluir.png" RenderTransformOrigin="0.289,0.542"/>
+            </k:KinectCircleButton>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="1110"  >
+
+                <k:KinectCircleButton Name="btnAumentaLinha"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" Click="btnAumentaLinha_Click">
+                    <Image x:Name="imgAumentaLinha" Height="60" Width="60"  Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Mais.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+
+                <k:KinectCircleButton Name="btnDiminuirLinha"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" Click="btnDiminuirLinha_Click">
+                    <Image x:Name="imgDiminuirLinha" Height="60" Width="60"  Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Menos.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+
+                <k:KinectCircleButton Name="btnVermelho"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" Click="btnVermelho_Click">
+                    <Image x:Name="imgVermelho" Height="60" Width="60"  
+                               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Vermelho.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+
+                <k:KinectCircleButton Name="btnVerde"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" Click="btnVerde_Click">
+                    <Image x:Name="imgVerde" Height="60" Width="60"  
+                               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Verde.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+
+                <k:KinectCircleButton Name="btnAzul"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" Click="btnAzul_Click">
+                    <Image x:Name="imgAzul" Height="60" Width="60"  
+                               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Azul.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+
+                <k:KinectCircleButton Name="btnApagar"                                                          
+                            Height="180" Foreground="RoyalBlue" Background="White" LabelBackground="AliceBlue" Click="btnApagar_Click">
+                    <Image x:Name="imgApagar" Height="60" Width="60"  
+                               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Apagar.png" RenderTransformOrigin="0.289,0.542"/>
+                </k:KinectCircleButton>
+            </StackPanel>
+        </DockPanel>
+        
+        <my:MensagemInformacao x:Name="msgInformacao"
+                               Width="500"
+                               Height="250"
+                               Grid.ColumnSpan="3"
+                               Grid.RowSpan="2"
+                               Visibility="Hidden"/>
+
+        <my:InputBox x:Name="InputBox"
+                     Width="500"
+                     Height="300"
+                     Grid.ColumnSpan="3"
+                     Grid.RowSpan="2"
+                     Visibility="Hidden"/>
+
+        <my:Help x:Name="hlpHelp"
+                 Grid.ColumnSpan="3"
+                 Grid.RowSpan="2"
+                 Visibility="Hidden"/>
+
+        <ContentControl x:Name="Teste"
+                            Width="500"
+                            Height="250"
+                            Grid.ColumnSpan="3"
+                            Grid.RowSpan="2" />
+    </Grid>
+    <!--/-->
+</Window>

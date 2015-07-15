@@ -1,0 +1,7 @@
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\bin\Debug\AuxiliarKinect.dll
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\bin\Debug\AuxiliarKinect.pdb
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\bin\Debug\Microsoft.Kinect.Toolkit.Controls.dll
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\bin\Debug\Microsoft.Kinect.Toolkit.dll
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\bin\Debug\Microsoft.Kinect.Toolkit.Interaction.dll
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\obj\Debug\AuxiliarKinect.dll
+C:\Users\Renato\documents\visual studio 2013\Projects\AuxiliarKinect\AuxiliarKinect\obj\Debug\AuxiliarKinect.pdb

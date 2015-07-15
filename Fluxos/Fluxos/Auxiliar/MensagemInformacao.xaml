@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Fluxos.Auxiliar.MensagemInformacao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2013"
+             xmlns:my="clr-namespace:Fluxos.Auxiliar"
+             xmlns:local="clr-namespace:Fluxos"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="500">
+
+    <k:KinectRegion x:Name="kinectRegionInformacao">
+    <Grid Name="GradePrincipal" Background="DarkBlue">
+        <Grid.RowDefinitions>
+            <my:RowDefinitionExtended Height="40"/>
+            <my:RowDefinitionExtended Height="*"/>
+            <my:RowDefinitionExtended Height="30"/>
+            <my:RowDefinitionExtended Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <my:ColumnDefinitionExtended Width="40"/>
+            <my:ColumnDefinitionExtended Width="80"/>
+            <my:ColumnDefinitionExtended Width="10"/>
+            <my:ColumnDefinitionExtended Width="240"/>
+            <my:ColumnDefinitionExtended Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image x:Name="imgInformacao" 
+               Height="60" 
+               Width="60"  
+               Grid.Row="1"
+               Grid.Column="1"
+               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Informacao.png"/>
+
+        
+            <k:KinectCircleButton x:Name="btnOk" Content="OK" Grid.Column="4" Grid.Row="3"
+                              Foreground="White"                              
+                              Command="{x:Static local:MainWindow.OkInformacao}"/>
+        
+
+        <TextBlock x:Name="lblMensagem" Text="Mensagem" Foreground="White" Grid.Row="1" Grid.Column="3" FontSize="25" FontWeight="SemiBold"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                   TextWrapping="Wrap"/>
+
+    </Grid>
+    </k:KinectRegion>
+
+</UserControl>

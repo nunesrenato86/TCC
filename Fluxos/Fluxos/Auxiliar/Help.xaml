@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Fluxos.Auxiliar.Help"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2013"
+             xmlns:my="clr-namespace:Fluxos.Auxiliar"
+             xmlns:local="clr-namespace:Fluxos"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <k:KinectRegion x:Name="kinectRegionHelp">
+        <Grid Name="GradePrincipal" Background="White">
+            <Grid.RowDefinitions>
+                <my:RowDefinitionExtended Height="160"/>
+                <my:RowDefinitionExtended Height="*"/>
+                <my:RowDefinitionExtended Height="150"/>
+                <my:RowDefinitionExtended Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <my:ColumnDefinitionExtended Width="10"/>
+                <my:ColumnDefinitionExtended Width="160"/>
+                <my:ColumnDefinitionExtended Width="200"/>
+                <my:ColumnDefinitionExtended Width="50"/>
+                <my:ColumnDefinitionExtended Width="*"/>
+                <my:ColumnDefinitionExtended Width="160"/>
+                <my:ColumnDefinitionExtended Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="imgHelp" 
+               Height="350" 
+               Width="350"  
+               Grid.Row="0"
+               Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   Grid.RowSpan="3"
+                   Grid.ColumnSpan="2"
+               Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Help/0.png"/>
+
+            <k:KinectCircleButton 
+                Name="btnExit"                                                          
+                Height="180"
+                Width="180"
+                Foreground="RoyalBlue" 
+                Background="White" 
+                LabelBackground="AliceBlue"
+                DockPanel.Dock="Right" 
+                Grid.Column="5" 
+                Grid.Row="0" 
+                Command="{x:Static local:MainWindow.HideHelp}">
+                <Image x:Name="imgExit" 
+                       Height="80" 
+                       Width="80"  
+                       Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Exit.png" 
+                       RenderTransformOrigin="0.289,0.542"/>
+            </k:KinectCircleButton>
+
+            <k:KinectCircleButton 
+                Name="btnNext"                                                          
+                Height="180"
+                Width="180"
+                Foreground="RoyalBlue" 
+                Background="Transparent" 
+                LabelBackground="AliceBlue"
+                DockPanel.Dock="Right" 
+                Grid.Column="5" Grid.Row="2" Click="btnNext_Click">
+                <Image x:Name="imgNext" 
+                       Height="80" 
+                       Width="80"  
+                       Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Next.png" 
+                       RenderTransformOrigin="0.289,0.542"/>
+            </k:KinectCircleButton>
+
+            <k:KinectCircleButton 
+                Name="btnPrevious"                                                          
+                Height="180"
+                Width="180"
+                Foreground="RoyalBlue" 
+                Background="Transparent" 
+                LabelBackground="AliceBlue"
+                DockPanel.Dock="Right" 
+                Grid.Column="0" 
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Left" Click="btnPrevious_Click"
+                >
+                <Image x:Name="imgPrevious" 
+                       Height="80" 
+                       Width="80"  
+                       Source="C:\Users\Renato\Documents\Visual Studio 2013\Projects\Fluxos\Fluxos\bin\Debug\Imagens/Previous.png" 
+                       RenderTransformOrigin="0.289,0.542"/>
+            </k:KinectCircleButton>
+
+            <TextBlock x:Name="lblTitulo" 
+                       Text="Titulo" 
+                       Foreground="RoyalBlue" 
+                       Grid.Row="0" 
+                       Grid.Column="1" 
+                       FontSize="50" 
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       Grid.ColumnSpan="5"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock x:Name="lblMensagem" 
+                       Text="Mensagem" 
+                       Foreground="RoyalBlue" 
+                       Grid.Row="1" 
+                       Grid.Column="3" 
+                       FontSize="50" 
+                       FontWeight="Bold"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       Grid.ColumnSpan="3"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock x:Name="lblObs" 
+                       Text="OBS" 
+                       Foreground="RoyalBlue" 
+                       Grid.Row="2" 
+                       Grid.Column="2" 
+                       FontSize="40" 
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       Grid.ColumnSpan="3"
+                       TextWrapping="Wrap"/>
+        </Grid>
+    </k:KinectRegion>
+</UserControl>
