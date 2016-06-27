@@ -1,4 +1,4 @@
-Fluxos is the main project (KSlide)
+Fluxos is the main project (KSlide) -> Software to interact with presentations using the Microsoft Kinect.
 
 AuxiliarKinect is a support project.
 
